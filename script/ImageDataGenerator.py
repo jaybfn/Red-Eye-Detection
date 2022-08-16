@@ -7,19 +7,11 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-# path for loading images for generating new images for Image Augmentation
-base_path = r"../data/eye_data/"
 
-# path for saving images generated from ImageDataGenerator.py
-save_path = r"../data/aug_red_eye/"
 
-# listing the directory from the base_path
-# each directory has images which corresponds to a particular class
-# and we use folder name as a particular class of a image
-classes = os.listdir(base_path)
-print(classes)
 
-def generate_new_images(IDG, file_name_prefix):
+
+def generate_new_images(IDG, file_name_prefix, base_path, save_path):
 
     """ This function generates images using ImageDataGenerator class from keras
         The function requires 2 input arguments:
@@ -71,3 +63,28 @@ def generate_new_images(IDG, file_name_prefix):
                     save_img(img_path+'\\'+ f'{file_name_prefix}_{i}_{file}', img)
                     plt.imshow(img)
                 plt.show()
+
+if __name__ == '__main__':
+
+    # path for loading images for generating new images for Image Augmentation
+    base_path = r"../data/eye_data/normal_eye/"
+
+    # path for saving images generated from ImageDataGenerator.py
+    save_path = r"../data/aug_red_eye/"
+
+    # listing the directory from the base_path
+    # each directory has images which corresponds to a particular class
+    # and we use folder name as a particular class of a image
+    classes = os.listdir(base_path)
+    print(classes)
+
+    # ImageDataGenerator
+    datagen = ImageDataGenerator(
+            rotation_range=10, # rotation
+            width_shift_range=0.2, # horizontal shift
+            height_shift_range=0.2, # vertical shift
+            zoom_range=0.2, # zoom
+            horizontal_flip=True, # horizontal flip
+            brightness_range=[0.2,1.2]) # brightness
+
+    generate_new_images(datagen,'aug',base_path, save_path)
