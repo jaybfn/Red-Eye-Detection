@@ -150,9 +150,17 @@ test_data_path = '../../data/aug_red_eye/training_aug/test'
 # defining ImageGenerator
 
 train_datagen = ImageDataGenerator(
+        rotation_range=30,
+        horizontal_flip=True,
+        vertical_flip=True,
         rescale=1./255,
         fill_mode="nearest")
-val_datagen = ImageDataGenerator(rescale=1./255)
+val_datagen = ImageDataGenerator(
+        rotation_range=30,
+        horizontal_flip=True,
+        vertical_flip=True,
+        rescale=1./255,
+        fill_mode="nearest")
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 # defining dataloader
@@ -219,6 +227,11 @@ history = model.fit(train_generator,
         validation_data = validation_generator,
         callbacks=[cb])
 
+# save the model
+
+model.save(path_model+'/'+'model.h5')
+
+# reading the data.csv where all the epoch training scores are stored
 df = pd.read_csv(path_metrics+'/'+'data.csv')
 
 metricplot(df, 'epoch', 'loss','val_loss', path_metrics)
