@@ -37,6 +37,10 @@ from sklearn.metrics import plot_roc_curve
 
 plt.style.use('fivethirtyeight')
 
+import absl.logging
+absl.logging.set_verbosity(absl.logging.ERROR)
+
+
 # function to create all the necessary directory!
 
 def create_dir(path):
@@ -219,12 +223,14 @@ for layer in pretrain_model_resnet50.layers:
 resnet50_model.add(pretrain_model_resnet50)
 resnet50_model.add(Flatten())
 
-resnet50_model.add(Dense(256, activation = 'relu'))
 resnet50_model.add(Dense(128, activation = 'relu'))
 resnet50_model.add(Dense(64, activation = 'relu'))
-#resnet50_model.add(Dropout(0.2))
+resnet50_model.add(Dropout(0.3))
 resnet50_model.add(Dense(CLASSES, activation='sigmoid'))
 resnet50_model.summary()
+
+# loading weights:
+#resnet50_model.load_weights(path_model+'/'+model_name)
 
 # compling the model
 resnet50_model.compile(optimizer=keras.optimizers.Adam(1e-4), 
