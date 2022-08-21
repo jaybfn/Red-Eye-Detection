@@ -32,8 +32,6 @@ import matplotlib.pyplot as plt
 
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import plot_confusion_matrix
-from sklearn.metrics import plot_roc_curve
-#from keras.layers import Input, Dense, Activation, BatchNormalization, Conv2D, MaxPooling2D, , Add, ZeroPadding2D,Flatten
 
 plt.style.use('fivethirtyeight')
 
@@ -106,7 +104,7 @@ if __name__ == '__main__':
     WIDTH = 128
     HEIGHT = 128
     CHANNELS = 3
-    CLASSES = 2
+    CLASSES  = 2
 
     # model hyperparameters!
 
@@ -205,7 +203,7 @@ x_train, y_train = train_generator.__next__()
 
 INPUT_SHAPE = x_train[0].shape
 print(INPUT_SHAPE)
-CLASSES  = 2
+
 
 # initializing ResNet50 model and adding first and last layers
 
@@ -280,5 +278,6 @@ print('\n')
 
 
 # Building Confusion Matrix for the test dataset
-
+print('Confusion Matrix for the Test DataSet:')
+print('\n')
 Confusion_Matrix(test_generator, resnet50_model, path_metrics)
