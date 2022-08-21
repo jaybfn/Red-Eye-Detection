@@ -4,8 +4,8 @@ Once the Experiment name is entered, this code creates 1 folder and 3 sub folder
 the main folder will be names as the current date and the subfolder will be named as follow:
 1.metrics : this is the place where all the metrics from the training is stored
 2. model: the model.h5 files is stored here
-3. model_checpoint: all the model training weights are stored.
-Once all the folders are created, this code will print the model summary for user refrence
+3. model_checkpoint: all the model training weights are stored.
+Once all the folders are created, this code will print the model summary for user reference
 and then the training starts. After the training is over, all the model scores 
 will be printed once by one for the user ref. 
 """
@@ -189,17 +189,9 @@ test_generator = test_datagen.flow_from_directory(
 
 print('\n')
 
-# # checking/ verifying if the image and labels are coorelated
+# checking/ verifying if the image and labels are coorelated
+
 x_train, y_train = train_generator.__next__()
-
-# for i in range(0,3):
-#     image = x_train[i]
-#     plt.subplot(1,2,1)
-#     plt.imshow(image)
-#     print(y_train[i][0])
-#     plt.show()
-
-# calling the models!
 
 INPUT_SHAPE = x_train[0].shape
 print(INPUT_SHAPE)
@@ -209,7 +201,9 @@ model_init = LeNET_Model(INPUT_SHAPE, CLASSES)
 
 model = model_init.LeNET()
 print(model.summary())
-# compling the model
+
+# compiling the model
+
 model.compile(optimizer=keras.optimizers.Adam(0.5e-4), 
                 loss=keras.losses.binary_crossentropy, metrics=['accuracy','Recall','Precision'])
 
@@ -251,22 +245,6 @@ print('\n','Evaluation of Test dataset:','\n''\n','test_loss:',round(test_loss,3
 print('\n')
 
 
-# Building OCnfusion Matrix for the test dataset
+# Building Confusion Matrix for the test dataset
 
 Confusion_Matrix(test_generator, model, path_metrics)
-# x_test, y_test = test_generator.__next__()
-
-# y_series_test = []
-# # checking/ verifying if the image and masks are coorelated
-# for i in range(0,11):
-#     image = x_test[i]
-#     #plt.subplot(1,2,1)
-#     #plt.imshow(image)
-#     y_series_test.append(int(y_test[i][1]))
-#     #plt.show()
-
-# y_pred_test = model.predict(test_generator)
-# y_pred_test = y_pred_test.argmax(axis=-1)
-# cf_matrix = confusion_matrix(y_series_test, y_pred_test)
-# print(cf_matrix)
-
