@@ -81,7 +81,7 @@ def Confusion_Matrix(data_generator, model, path):
         image = x_test[i]
         y_series_test.append(int(y_test[i][1]))
 
-    y_pred_test = model.predict(test_generator)
+    y_pred_test = model.predict(data_generator)
     y_pred_test = y_pred_test.argmax(axis=-1)
     cf_matrix = confusion_matrix(y_series_test, y_pred_test)
     
