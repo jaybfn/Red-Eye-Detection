@@ -31,6 +31,8 @@ import matplotlib.pyplot as plt
 
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve, auc
 
 plt.style.use('fivethirtyeight')
 
@@ -73,12 +75,12 @@ def metricplot(df, xlab, ylab_1,ylab_2, path):
 def Confusion_Matrix(data_generator, model, path):
     
     LABELS = ["Normal_Eye","Red_Eye"]
-    x_test, y_test = data_generator.__next__()
+    x_t, y_t = data_generator.__next__()
     y_series_test = []
     # checking/ verifying if the image and masks are coorelated
     for i in range(0,11):
-        image = x_test[i]
-        y_series_test.append(int(y_test[i][1]))
+        image = x_t[i]
+        y_series_test.append(int(y_t[i][1]))
 
     y_pred_test = model.predict(data_generator)
     y_pred_test = y_pred_test.argmax(axis=-1)
@@ -108,7 +110,7 @@ if __name__ == '__main__':
     # model hyperparameters!
 
     batchsize = 32
-    epochs = 100
+    epochs = 150
 
     # creating main folder
     today = datetime.now()
@@ -210,7 +212,7 @@ print(model.summary())
 # loading weights:
 #model.load_weights(path_model+'/'+model_name)
 
-initial_learning_rate = 0.0001
+initial_learning_rate = 0.00001
 lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
     initial_learning_rate,
     decay_steps=10000,
