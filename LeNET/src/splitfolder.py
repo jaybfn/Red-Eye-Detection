@@ -2,7 +2,7 @@
 import splitfolders as sf
 
 # path
-FOLDER_NAME = '../data/eye_data/'
+FOLDER_NAME = '../../data/eye_data_main/'
 
 # splitfolder
-sf.ratio(FOLDER_NAME, output="../../data/eye_data/training", seed=142, ratio=(0.8,0.15,0.05))
+sf.ratio(FOLDER_NAME, output="../../data/aug_data_imb", seed=142, ratio=(0.7,0.25,0.05))
