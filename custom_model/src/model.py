@@ -22,19 +22,13 @@ class Custom_Model():
 
         model = Sequential()
 
-        model.add(Conv2D(filters= 8, kernel_size=(3,3), strides=(2,2), input_shape=self.INPUT_SHAPE,
+        model.add(Conv2D(filters= 32, kernel_size=(3,3), strides=(2,2), input_shape=self.INPUT_SHAPE,
                 activation=keras.activations.relu,
                 padding='valid',kernel_regularizer=l2(0.00001)))
 
         model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))
 
-        model.add(Conv2D(filters = 16, kernel_size=(3,3),strides=(2,2),
-                activation=keras.activations.relu, 
-                padding = 'valid',kernel_regularizer=l2(0.00001)))
-
-        model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))
-
-        model.add(Conv2D(filters = 32, kernel_size=(3,3),strides=(1,1),
+        model.add(Conv2D(filters = 32, kernel_size=(3,3),strides=(2,2),
                 activation=keras.activations.relu, 
                 padding = 'valid',kernel_regularizer=l2(0.00001)))
 
@@ -46,16 +40,23 @@ class Custom_Model():
 
         model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))
 
-        model.add(Conv2D(filters = 64, kernel_size=(3,3),strides=(1,1),
-                activation=keras.activations.relu, 
-                padding = 'valid',kernel_regularizer=l2(0.00001)))
+        # model.add(Conv2D(filters = 64, kernel_size=(3,3),strides=(1,1),
+        #         activation=keras.activations.relu, 
+        #         padding = 'valid',kernel_regularizer=l2(0.00001)))
 
-        model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))      
+        # model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))
+
+        # model.add(Conv2D(filters = 128, kernel_size=(3,3),strides=(1,1),
+        #         activation=keras.activations.relu, 
+        #         padding = 'valid',kernel_regularizer=l2(0.00001)))
+
+        # model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1), padding= 'valid'))      
 
         model.add(Flatten())
-        model.add(Dropout(0.4))
-        model.add(Dense(128, activation = 'relu'))
-        model.add(Dense(units = self.CLASSES, activation=keras.activations.sigmoid))
+       
+        model.add(Dense(64, activation = 'relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(units = self.CLASSES , activation=keras.activations.sigmoid))
 
         return model
 
