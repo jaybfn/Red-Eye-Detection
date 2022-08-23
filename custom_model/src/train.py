@@ -78,7 +78,7 @@ def Confusion_Matrix(data_generator, model, path):
     x_t, y_t = data_generator.__next__()
     y_series_test = []
     # checking/ verifying if the image and masks are coorelated
-    for i in range(0,11):
+    for i in range(0,32):
         image = x_t[i]
         y_series_test.append(int(y_t[i][1]))
 
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     # model hyperparameters!
 
     batchsize = 32
-    epochs = 150
+    epochs = 200
 
     # creating main folder
     today = datetime.now()
@@ -144,9 +144,9 @@ if __name__ == '__main__':
      
 # training path:
 
-train_data_path = '../../data/aug_red_eye/training_aug/train'
-val_data_path = '../../data/aug_red_eye/training_aug/val'
-test_data_path = '../../data/aug_red_eye/training_aug/test'
+train_data_path = '../../data/aug_data_imb/training_aug/train'
+val_data_path = '../../data/aug_data_imb/training_aug/val'
+test_data_path = '../../data/aug_data_imb/training_aug/test'
 
 
 # defining ImageGenerator
@@ -187,7 +187,7 @@ test_generator = test_datagen.flow_from_directory(
         test_data_path,
         color_mode="rgb",
         target_size=(WIDTH, HEIGHT),
-        batch_size=11,
+        batch_size=32,
         shuffle = False,
         class_mode='categorical',
         seed = 42)
