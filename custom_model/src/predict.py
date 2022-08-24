@@ -5,25 +5,8 @@ import os
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-import keras
-from keras.initializers import glorot_uniform
-from tensorflow import keras
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, BatchNormalization, Dropout, GlobalAveragePooling2D ,AveragePooling2D
-
-from tensorflow.keras.activations import relu, softmax
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras import backend as K
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import load_img
-from tensorflow.keras.utils import to_categorical
-from keras import regularizers
-from keras.regularizers import l2, l1
 from keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.preprocessing.image import load_img, save_img
 from keras.models import load_model
-import matplotlib.pyplot as plt
 
 plt.style.use('fivethirtyeight')
 
