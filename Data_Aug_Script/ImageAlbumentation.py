@@ -7,8 +7,8 @@ from tqdm import tqdm
 import itertools
 
 
-images_path_normal="../../data/aug_red_eye/training/test/normal_eye" #path to original images
-img_augmented_path_normal="../../data/aug_red_eye/training_aug/test/normal_eye_aug/" # path to store aumented images
+images_path_normal="../data/aug_red_eye/training/test/normal_eye" #path to original images
+img_augmented_path_normal="../data/aug_red_eye/training_aug/test/normal_eye_aug/" # path to store aumented images
 number_of_images = images_path_normal
 img_list_len = len(os.listdir(number_of_images))
 images_to_generate = img_list_len
