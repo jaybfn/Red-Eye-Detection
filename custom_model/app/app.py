@@ -6,12 +6,16 @@ import REDEye_detection as live_predict
 
 app = FastAPI()
 
-@app.get('/index')
+@app.get('/')
+def project():
+    return 'Red Eye Detection'
+
+@app.post('/app/REDEye_detection')
 def predict_call():
 
     pred = live_predict
     return pred
-
+   
 # uvicorn app:app --reload
 if __name__ =="__main__":
 
