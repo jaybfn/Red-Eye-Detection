@@ -7,11 +7,11 @@ import REDEye_detection as live_predict
 app = FastAPI()
 
 @app.get('/')
-def project():
+async def project():
     return 'Red Eye Detection'
 
 @app.post('/app/REDEye_detection')
-def predict_call():
+async def predict_call():
 
     pred = live_predict
     return pred
